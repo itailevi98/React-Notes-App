@@ -17,6 +17,14 @@ class App extends React.Component {
     });
   }
 
+  deleteNote(index){
+    if(window.confirm("Are you sure you want to delete this note?")){
+      this.setState(prevState => {
+        return { notes: [...prevState.notes.slice(0, index), ...prevState.notes.slice(index + 1)] };
+      });
+    }
+  }
+
   render(){
     return (
       <div className="App">

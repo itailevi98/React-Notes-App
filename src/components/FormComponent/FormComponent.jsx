@@ -1,5 +1,6 @@
 import React from 'react';
 import './styles.css';
+import moment from 'moment';
 
 class FormComponent extends React.Component{
     constructor(props){
@@ -11,7 +12,8 @@ class FormComponent extends React.Component{
     }
 
     onNoteChange(value){
-        this.setState({note: value, date: new Date()});
+        let date = moment().format('MMMM Do h:mm A');
+        this.setState({note: value, date: date});
     }
 
     onSubmit(event){

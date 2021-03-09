@@ -1,11 +1,28 @@
 .note-item {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    display: inline-flex;
+    display: flex;
+    flex-direction: column;
     width: 115px;
-    height: 2rem;
+    height: 4rem;
     margin-right: 10px;
     margin-bottom: 10px;
     padding: 5px;
-    align-items: center;
     overflow-x: auto;
+    justify-content: flex-start;
+}
+
+#delete-button {
+    border: 0;
+    background-color: white;
+    font-size: 0.7rem;
+    margin-left: auto;
+}
+
+#date {
+    font-size: 0.7rem;
+    display: flex;
+}
+
+#note {
+    margin-top: auto;
 }

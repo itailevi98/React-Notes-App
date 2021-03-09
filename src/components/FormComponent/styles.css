@@ -1,0 +1,16 @@
+.container {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+#submit-button {
+    margin-top: 10px;
+}

@@ -1,0 +1,9 @@
+.notes-list-container {
+    text-align: start;
+}   
+
+.notes-list {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+}

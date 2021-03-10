@@ -6,7 +6,7 @@ function NotesListComponent(props) {
     const { notes } = props;
     return (
         <div className="notes-list-container">
-            <ul className="notes-list">
+            <ul id="notes-list">
                 {notes.map((note, index) => 
                     <NoteComponent
                         key={note.id}

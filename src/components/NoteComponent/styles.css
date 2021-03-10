@@ -1,3 +1,7 @@
+textarea {
+    font: 400 13.3333px Arial;
+}
+
 .note-item {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     display: flex;
@@ -7,8 +11,12 @@
     margin-right: 10px;
     margin-bottom: 10px;
     padding: 5px;
-    overflow-x: auto;
+    word-wrap: break-word;
+    overflow-y: auto;
     justify-content: space-between;
+    background: white;
+    border: 0;
+    cursor: pointer;
 }
 
 #delete-button {
@@ -21,4 +29,29 @@
     font-size: 0.7rem;
     display: flex;
     justify-content: space-between;
+    width: 100%;
+}
+
+#modal-note-item {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    height: 6rem;
+    padding: 5px;
+    word-wrap: break-word;
+    overflow-y: auto;
+    justify-content: space-between;
+    background: white;
+    border: 0;
+}
+
+#modal{
+    height: 8rem;
+    width: 160px;
+    margin: auto auto auto auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

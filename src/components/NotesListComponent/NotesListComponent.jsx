@@ -6,17 +6,16 @@ function NotesListComponent(props) {
     const { notes } = props;
     return (
         <div className="notes-list-container">
-            <ul id="notes-list">
-                {notes.map((note, index) => 
-                    <NoteComponent
-                        key={note.id}
-                        note={note}
-                        onDeleteNote={() => props.onDeleteNote(index)}
-                    />
-                )}
-            </ul>
+            {notes.map((note, index) => 
+                <NoteComponent
+                    key={note.id}
+                    note={note}
+                    index={index}
+                    onDeleteNote={() => props.onDeleteNote(index)}
+                    onUpdateNote={props.onUpdateNote}
+                />
+            )}
         </div>
-        
     );
 }
 

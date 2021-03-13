@@ -1,55 +1,46 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import './styles.css';
+import FormComponent from '../FormComponent/FormComponent';
 
 Modal.setAppElement('#root');
 
 function NoteComponent(props){
-    const { title, note, date } = props.note;
+    const { title, note, createdDate, updatedDate } = props.note;
+    const index = props.index;
     const [modalIsOpen, setModalIsOpen] = useState(false);
     return (
-        <li>
+        <div>
             <div className="note-item" onClick={() => setModalIsOpen(true)}>
-                <div id="date">
-                    <span>{date}</span>
-                    <button id="delete-button" onClick={props.onDeleteNote}>&#10006;</button>
-                </div>
+                <button id="delete-button" onClick={props.onDeleteNote}>&#10006;</button>
                 {title !== "" && (
                     <div>
                         <h3>{title}</h3>
-                        <span id="note">{note}</span>
+                        <p id="note">{note}</p>
                     </div>
                 )}
                 {title === "" && (
                     <div>
-                        <span id="note">{note}</span>
+                        <p id="note">{note}</p>
                         <h3>{title}</h3>
                     </div>
                 )}
+                <div id="date">
+                    <p>Created at: {createdDate}</p>
+                    {updatedDate && <p>Updated at: {updatedDate}</p>}
+                </div>
             </div>
             <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)} id="modal">
-                <div id="modal-note-item">
-                    <div id="date">
-                        <span>{date}</span>
-                        <button id="delete-button" onClick={() => setModalIsOpen(false)}>&#10006;</button>
-                    </div>
-                    {title !== "" && (
-                        <div>
-                            <h3>{title}</h3>
-                            <span id="note">{note}</span>
-                        </div>
-                    )}
-                    {title === "" && (
-                        <div>
-                            <span id="note">{note}</span>
-                            <h3>{title}</h3>
-                        </div>
-                    )}
-                </div>
-                
+                <FormComponent 
+                    note={note} 
+                    title={title} 
+                    updateForm={true} 
+                    createdDate={createdDate} 
+                    index={index} 
+                    onUpdateNote={props.onUpdateNote} 
+                />
             </Modal>
-                
-        </li>
+        </div>
     );
 }
 

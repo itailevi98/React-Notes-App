@@ -1,11 +1,9 @@
 .notes-list-container {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
     text-align: start;
+    display: grid;
+    grid-template-columns: repeat(4, 2fr);
+    grid-template-rows: repeat(auto-fill, 2fr);
+    gap: 1em 1em;
 }   
-
-#notes-list {
-    list-style-type: none;
-    padding: 0;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-}

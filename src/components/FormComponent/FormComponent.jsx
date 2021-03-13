@@ -6,10 +6,15 @@ class FormComponent extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            title: "",
-            note: "",
-            date: undefined,
+            title: props.title ? props.title : "",
+            note: props.note ? props.note : "",
+            createdDate: props.createdDate ? props.createdDate : undefined,
+            updatedDate: undefined
         }
+        this.updateForm = true ? props.updateForm : false;
+        this.index = props.index;
+        console.log(props.index);
+        console.log(`this.index: ${this.index}`);
     }
 
     onTitleChange(value){
@@ -17,8 +22,7 @@ class FormComponent extends React.Component{
     }
 
     onNoteChange(value){
-        let date = moment().format('MMMM Do h:mm A');
-        this.setState({note: value, date: date});
+        this.setState({note: value});
     }
 
     onSubmit(event){
@@ -26,18 +30,36 @@ class FormComponent extends React.Component{
         if(this.state.note === ""){
             return;
         }
-        const note = {
-            id: Date.now(),
-            title: this.state.title,
-            note: this.state.note, 
-            date: this.state.date,
+        let date = moment().format('MMMM Do h:mm A');
+        console.log(this.index);
+        if(this.updateForm){
+            const newNote = {
+                id: Date.now(),
+                title: this.state.title,
+                note: this.state.note, 
+                createdDate: this.state.createdDate,
+                updatedDate: date,
+            }
+            console.log(newNote);
+            this.props.onUpdateNote(newNote, this.index);
         }
-        this.props.onAddNote(note);
-        this.setState({
-            title: '',
-            note: '', 
-            date: undefined,
-        });
+        else{
+            date = moment().format('MMMM Do h:mm A');
+            const note = {
+                id: Date.now(),
+                title: this.state.title,
+                note: this.state.note, 
+                createdDate: date,
+                updatedDate: undefined,
+            }
+            this.props.onAddNote(note);
+            this.setState({
+                title: '',
+                note: '', 
+                createdDate: undefined,
+                updatedDate: undefined,
+            });
+        }
     }
 
     render(){
@@ -61,7 +83,8 @@ class FormComponent extends React.Component{
                         value={this.state.note}
                         onChange={(event) => this.onNoteChange(event.target.value)}>
                     </textarea>
-                    <button id="submit-button" type="submit" name="submitButton">Add</button>
+                    {!this.state.createdDate && <button id="submit-button" type="submit" name="submitButton">Add</button>}
+                    {this.state.createdDate && <button id="submit-button" type="submit" name="submitButton">Update</button>}
                 </form>
             </div>
         );

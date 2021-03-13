@@ -25,6 +25,25 @@ class App extends React.Component {
     }
   }
 
+  updateNote(note, index){
+    console.log(note);
+    console.log(`Index: ${index}`);
+    let oldNote = this.state.notes[index];
+    if(oldNote.note === note.note && oldNote.title === note.title){
+      return;
+    }
+    if(index === 0){
+      this.setState(prevState => {
+        return { notes: [note, ...prevState.notes.slice(index + 1)] };
+      });
+    }
+    else{
+      this.setState(prevState => {
+        return { notes: [...prevState.notes.slice(0, index), note, ...prevState.notes.slice(index + 1)] };
+      });
+    }
+  }
+
   render(){
     return (
       <div className="App">
@@ -34,6 +53,7 @@ class App extends React.Component {
         <NotesListComponent 
           notes={this.state.notes}
           onDeleteNote={(index) => this.deleteNote(index)}
+          onUpdateNote={(newNote, index) => this.updateNote(newNote, index)}
         />
       </div>
     );

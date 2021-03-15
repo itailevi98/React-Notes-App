@@ -4,47 +4,46 @@ import FormComponent from './components/FormComponent/FormComponent';
 import NotesListComponent from './components/NotesListComponent/NotesListComponent';
 
 class App extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       notes: [],
     }
   }
 
-  addNote(note){
+  addNote(note) {
     this.setState(prevState => {
       return { notes: [...prevState.notes, note] };
     });
   }
 
-  deleteNote(index){
-    if(window.confirm("Are you sure you want to delete this note?")){
+  deleteNote(index) {
+    if (window.confirm("Are you sure you want to delete this note?")) {
       this.setState(prevState => {
         return { notes: [...prevState.notes.slice(0, index), ...prevState.notes.slice(index + 1)] };
       });
     }
   }
 
-  updateNote(note, index){
-    console.log(note);
-    console.log(`Index: ${index}`);
-    let oldNote = this.state.notes[index];
-    if(oldNote.note === note.note && oldNote.title === note.title){
+  updateNote(note, index) {
+    const { notes } = this.state;
+    const oldNote = notes[index];
+    if (oldNote.note === note.note && oldNote.title === note.title) {
       return;
     }
-    if(index === 0){
+    if (index === 0) {
       this.setState(prevState => {
         return { notes: [note, ...prevState.notes.slice(index + 1)] };
       });
     }
-    else{
+    else {
       this.setState(prevState => {
         return { notes: [...prevState.notes.slice(0, index), note, ...prevState.notes.slice(index + 1)] };
       });
     }
   }
 
-  render(){
+  render() {
     return (
       <div className="App">
         <FormComponent 

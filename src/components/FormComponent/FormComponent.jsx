@@ -3,36 +3,33 @@ import './styles.css';
 import moment from 'moment';
 
 class FormComponent extends React.Component{
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            title: props.title ? props.title : "",
-            note: props.note ? props.note : "",
-            createdDate: props.createdDate ? props.createdDate : undefined,
+            title: props.title || "",
+            note: props.note || "",
+            createdDate: props.createdDate || undefined,
             updatedDate: undefined
         }
-        this.updateForm = true ? props.updateForm : false;
+        this.updateForm = props.updateForm;
         this.index = props.index;
-        console.log(props.index);
-        console.log(`this.index: ${this.index}`);
     }
 
-    onTitleChange(value){
+    onTitleChange(value) {
         this.setState({title: value});
     }
 
-    onNoteChange(value){
+    onNoteChange(value) {
         this.setState({note: value});
     }
 
-    onSubmit(event){
+    onSubmit(event) {
         event.preventDefault();
         if(this.state.note === ""){
             return;
         }
         let date = moment().format('MMMM Do h:mm A');
-        console.log(this.index);
-        if(this.updateForm){
+        if (this.updateForm) {
             const newNote = {
                 id: Date.now(),
                 title: this.state.title,
@@ -40,10 +37,9 @@ class FormComponent extends React.Component{
                 createdDate: this.state.createdDate,
                 updatedDate: date,
             }
-            console.log(newNote);
             this.props.onUpdateNote(newNote, this.index);
         }
-        else{
+        else {
             date = moment().format('MMMM Do h:mm A');
             const note = {
                 id: Date.now(),
@@ -62,7 +58,7 @@ class FormComponent extends React.Component{
         }
     }
 
-    render(){
+    render() {
         return (
             <div className="container">
                 <form onSubmit={(event) => this.onSubmit(event)}>

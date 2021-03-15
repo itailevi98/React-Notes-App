@@ -5,7 +5,7 @@ import FormComponent from '../FormComponent/FormComponent';
 
 Modal.setAppElement('#root');
 
-function NoteComponent(props){
+function NoteComponent(props) {
     const { title, note, createdDate, updatedDate } = props.note;
     const index = props.index;
     const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -13,13 +13,13 @@ function NoteComponent(props){
         <div>
             <div className="note-item" onClick={() => setModalIsOpen(true)}>
                 <button id="delete-button" onClick={props.onDeleteNote}>&#10006;</button>
-                {title !== "" && (
+                {title && (
                     <div>
                         <h3>{title}</h3>
                         <p id="note">{note}</p>
                     </div>
                 )}
-                {title === "" && (
+                {!title && (
                     <div>
                         <p id="note">{note}</p>
                         <h3>{title}</h3>
